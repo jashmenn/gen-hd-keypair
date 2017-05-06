@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+"use strict";
+
+let argv = require("yargs")
+  .usage("$0")
+  .option("network", {
+    alias: "n",
+    describe: "network key will be used on. One of: {main,testnet,regtest}",
+    default: "main"
+  })
+  .option("mnemonic", {
+    alias: "m",
+    describe: "use a given mnemonic instead of generating a random one"
+  })
+  .help("help").argv;
+
+require("../index")(argv);
