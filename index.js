@@ -1,4 +1,5 @@
 const bcoin = require("bcoin");
+const chalk = require("chalk");
 
 /**
  * To understand these see:
@@ -21,11 +22,43 @@ function run(argv) {
   let key = master.derive("m/44'/0'/0'/0/0");
   let keyring = new bcoin.keyring(key.privateKey, network);
 
-  console.log("🔒  Root mnemonic (private): ", mnemonic.getPhrase());
-  console.log("🔒  Master xprivkey (private): ", master.toJSON().xprivkey);
-  console.log("-----");
-  console.log("🔒  First WIF (private): ", keyring.toSecret());
-  console.log("☀️  First receiving address (public): ", keyring.getAddress("base58"));
+  let info = {
+    mnemonic: mnemonic.getPhrase(),
+    xprivkey: master.toJSON().xprivkey,
+    derived: {
+      private: keyring.toSecret(),
+      address: keyring.getAddress("base58")
+    }
+  };
+
+  if (argv.json) {
+    console.log(JSON.stringify(info, null, 2));
+  } else {
+    console.log(
+      "🔒 ",
+      chalk.blue("Root mnemonic (") + chalk.red("private") + chalk.blue("):"),
+      chalk.magenta(info.mnemonic)
+    );
+    console.log(
+      "🔒 ",
+      chalk.blue("Master xprivkey (") + chalk.red("private") + chalk.blue("):"),
+      chalk.magenta(info.xprivkey)
+    );
+    console.log("-----");
+    console.log(
+      "🔒 ",
+      chalk.blue("First WIF (") + chalk.red("private") + chalk.blue("):"),
+      chalk.magenta(info.derived.private)
+    );
+    console.log(
+
+      "⭐ ",
+      chalk.blue("First receiving address (") +
+        chalk.green("public") +
+        chalk.blue("):"),
+      chalk.green(info.derived.address)
+    );
+  }
 }
 
 module.exports = run;

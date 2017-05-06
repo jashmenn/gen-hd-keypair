@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "Generate a Bitcoin BIP39/BIP44 Keypair",
   "main": "index.js",
-  "scripts": { },
+  "scripts": {},
   "bin": "bin/gen-hd-keypair",
   "author": "Nate Murray <nate@natemurray.com",
-  "pay": ["193WVTLW9ueNyzDZ9cnUw6AKfnr85Q7ARA"],
+  "pay": [
+    "193WVTLW9ueNyzDZ9cnUw6AKfnr85Q7ARA"
+  ],
   "license": "MIT",
   "dependencies": {
     "bcoin": "1.0.0-beta.12",
+    "chalk": "^1.1.3",
     "yargs": "7.1.0"
   }
 }
