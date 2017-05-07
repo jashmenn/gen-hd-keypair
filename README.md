@@ -9,6 +9,7 @@ Easily generate a Bitcoin master key mnemonic.
 ## Example Usage:
 
 ```bash
+$ npm install -g gen-hd-keypair
 $ gen-hd-keypair 
 
 🔒  Root mnemonic (private): lake effort journey rug stairs embark journey load decline riot dynamic cram
