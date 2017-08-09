@@ -1,5 +1,5 @@
-const bcoin = require("bcoin");
-const chalk = require("chalk");
+const bcoin = require('bcoin');
+const chalk = require('chalk');
 
 /**
  * To understand these see:
@@ -27,7 +27,8 @@ function run(argv) {
     xprivkey: master.toJSON().xprivkey,
     derived: {
       private: keyring.toSecret(),
-      address: keyring.getAddress("base58")
+      address: keyring.getAddress('base58'),
+      xpubkey: master.xpubkey()
     }
   };
 
@@ -35,28 +36,32 @@ function run(argv) {
     console.log(JSON.stringify(info, null, 2));
   } else {
     console.log(
-      "🔒 ",
-      chalk.blue("Root mnemonic (") + chalk.red("private") + chalk.blue("):"),
+      '🔒 ',
+      chalk.blue('Root mnemonic (') + chalk.red('private') + chalk.blue('):'),
       chalk.magenta(info.mnemonic)
     );
     console.log(
-      "🔒 ",
-      chalk.blue("Master xprivkey (") + chalk.red("private") + chalk.blue("):"),
+      '🔒 ',
+      chalk.blue('Master xprivkey (') + chalk.red('private') + chalk.blue('):'),
       chalk.magenta(info.xprivkey)
     );
-    console.log("-----");
+    console.log('-----');
     console.log(
-      "🔒 ",
-      chalk.blue("First WIF (") + chalk.red("private") + chalk.blue("):"),
+      '🔒 ',
+      chalk.blue('First WIF (') + chalk.red('private') + chalk.blue('):'),
       chalk.magenta(info.derived.private)
     );
     console.log(
-
-      "⭐ ",
-      chalk.blue("First receiving address (") +
-        chalk.green("public") +
-        chalk.blue("):"),
+      '⭐ ',
+      chalk.blue('First receiving address (') +
+        chalk.green('public') +
+        chalk.blue('):'),
       chalk.green(info.derived.address)
+    );
+    console.log(
+      '🗝 ',
+      chalk.blue('Master xpubkey (') + chalk.green('public') + chalk.blue('):'),
+      chalk.green(info.derived.xpubkey)
     );
   }
 }
