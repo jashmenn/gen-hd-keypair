@@ -45,6 +45,11 @@ function run(argv) {
       chalk.blue('Master xprivkey (') + chalk.red('private') + chalk.blue('):'),
       chalk.magenta(info.xprivkey)
     );
+    console.log(
+      '⭐ ',
+      chalk.blue('Master xpubkey (') + chalk.green('public') + chalk.blue('):'),
+      chalk.green(info.derived.xpubkey)
+    );
     console.log('-----');
     console.log(
       '🔒 ',
@@ -58,11 +63,7 @@ function run(argv) {
         chalk.blue('):'),
       chalk.green(info.derived.address)
     );
-    console.log(
-      '🗝 ',
-      chalk.blue('Master xpubkey (') + chalk.green('public') + chalk.blue('):'),
-      chalk.green(info.derived.xpubkey)
-    );
+
   }
 }
 
