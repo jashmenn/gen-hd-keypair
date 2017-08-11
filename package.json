@@ -1,6 +1,6 @@
 {
   "name": "gen-hd-keypair",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Generate a Bitcoin BIP39/BIP44 Keypair",
   "main": "index.js",
   "scripts": {},
