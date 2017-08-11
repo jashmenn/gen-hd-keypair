@@ -25,10 +25,10 @@ function run(argv) {
   let info = {
     mnemonic: mnemonic.getPhrase(),
     xprivkey: master.toJSON().xprivkey,
+    xpubkey: master.xpubkey(),
     derived: {
       private: keyring.toSecret(),
       address: keyring.getAddress('base58'),
-      xpubkey: master.xpubkey()
     }
   };
 
@@ -48,7 +48,7 @@ function run(argv) {
     console.log(
       '⭐ ',
       chalk.blue('Master xpubkey (') + chalk.green('public') + chalk.blue('):'),
-      chalk.green(info.derived.xpubkey)
+      chalk.green(info.xpubkey)
     );
     console.log('-----');
     console.log(
