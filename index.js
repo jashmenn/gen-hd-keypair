@@ -20,7 +20,8 @@ function run(argv) {
 
   // Derive the first BIP44 external address.
   // See: https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki#examples
-  let key = master.derive(childIdx);
+  // let key = master.derive(childIdx);
+  let key = master.derivePath("m/44'/0'/0'/0/" + childIdx);
   let keyring = new bcoin.keyring(key.privateKey, network);
 
   let info = {
