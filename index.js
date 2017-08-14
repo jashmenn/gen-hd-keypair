@@ -8,7 +8,8 @@ const chalk = require('chalk');
  * * BIP44 https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki
  **/
 function run(argv) {
-  let network = argv.network;
+  let network = bcoin.network.get(argv.network);
+  let childIdx = argv.index || 0;
 
   let mnemonic = argv.mnemonic
     ? bcoin.hd.Mnemonic.fromPhrase(argv.mnemonic)
@@ -19,7 +20,7 @@ function run(argv) {
 
   // Derive the first BIP44 external address.
   // See: https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki#examples
-  let key = master.derive("m/44'/0'/0'/0/0");
+  let key = master.derive(childIdx);
   let keyring = new bcoin.keyring(key.privateKey, network);
 
   let info = {
@@ -53,12 +54,12 @@ function run(argv) {
     console.log('-----');
     console.log(
       '🔒 ',
-      chalk.blue('First WIF (') + chalk.red('private') + chalk.blue('):'),
+      chalk.blue('WIF [' + childIdx + '] (') + chalk.red('private') + chalk.blue('):'),
       chalk.magenta(info.derived.private)
     );
     console.log(
       '⭐ ',
-      chalk.blue('First receiving address (') +
+      chalk.blue('Receiving Address [' + childIdx + '] (') +
         chalk.green('public') +
         chalk.blue('):'),
       chalk.green(info.derived.address)

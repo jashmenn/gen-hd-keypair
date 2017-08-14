@@ -12,6 +12,11 @@ let argv = require("yargs")
     alias: "m",
     describe: "Use a given mnemonic instead of generating a random one"
   })
+  .option("index", {
+    alias: "i",
+    describe: "Child key index",
+    default: 0
+  })
   .option("json", {
     alias: "j",
     describe: "Output JSON"
